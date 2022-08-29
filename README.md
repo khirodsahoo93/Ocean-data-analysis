@@ -16,7 +16,7 @@ ML classification of vessels is an ongoing research challenge for the community 
 
 ## References
 
-[1] (mdpi.com/2078-2489/12/8/302/htm)
+[1] (https://mdpi.com/2078-2489/12/8/302/htm)
 
 
 The aim of the project is to release a public datasets of different ships for the underwater acoustic research community and develop a ML model to classify different vessel types trained on the same dataset.
