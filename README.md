@@ -21,8 +21,8 @@ Devised an optimised algorithm to extract the isolated ships' noises from the hy
 
 ## References
 
-[1] (https://mdpi.com/2078-2489/12/8/302/htm)
-[2] (https://www.frontiersin.org/articles/10.3389/fnbot.2022.889308/full)
+1. (https://mdpi.com/2078-2489/12/8/302/htm)
+2. (https://www.frontiersin.org/articles/10.3389/fnbot.2022.889308/full)
 
 
 The aim of the project is to release a public datasets of different ships for the underwater acoustic research community and develop a ML model to classify different vessel types trained on the same dataset.
