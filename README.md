@@ -18,7 +18,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li><a href="#INTRODUCTION">Introduction</a> </li>
-    <li><a href="# PROBLEM">Problem statement</a></li>
+    <li><a href="# PROBLEM">Problem</a></li>
     <li><a href="# DATA-SOURCES">Data Sources</a></li>
     <li><a href="# PROPOSED-METHOD">Proposed Method</a></li>
     <li><a href="#RESULTS">Results</a></li>
