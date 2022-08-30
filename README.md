@@ -1,26 +1,33 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+
 <a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
 
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 [![Ocean Data Lab][ocean-shield]][ocean-url]
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
+
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#INTRODUCTION">Introduction</a>
+      <ul>
+        <li><a href="#PROBLEM STATEMENT">Problem statement</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#DATA SOURCES">Data Sources</a>
+      <ul>
+        <li><a href="#PROPOSED METHOD">Proposed Method</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#RESULTS">Results</a></li>
+    <li><a href="#FUTURE WORK">Future Work</a></li>
+    <li><a href="#REFERENCES">References</a></li>
+  </ol>
+</details>
 
 # Ocean-data-analysis
 Find isolated ships in the region around a hydrophone using an optimized algorithm and use the audio signal captured by the hydrophone to classify ship vessels.
@@ -36,15 +43,15 @@ In the next sections, we will discuss the problem statement, data sources used a
 - Devise an optimised algorithm to extract the isolated ships' noises from the hydrophone's audio data and publicly available [AIS data](https://marinecadastre.gov/ais/) containing GPS coordinates of the ships and other meta-data.
 - Build a ML model to classify ships of different vessels types using Machine Learning techniques trained on the benchmark data created above.
 
-## Data Sources
+## DATA SOURCES
 
-## Algorithm and Implementation
+## PROPOSED METHOD
 
-## Results
+## RESULTS
 
-## Future Work
+## FUTURE WORK
 
-## References
+## REFERENCES
 
 1. (https://mdpi.com/2078-2489/12/8/302/htm)
 2. (https://www.frontiersin.org/articles/10.3389/fnbot.2022.889308/full)
