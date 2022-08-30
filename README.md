@@ -42,7 +42,7 @@ We are hence creating a publicly available audio data source for ships and using
 
 ## DATA SOURCES
 
-AIS data is used to collect ships metadata including information like geo-location, speed and vessel type, and label the hydrophones' recordings through our proposed method. . Hydrophone's recordings are collected from hydrophones of Ocean Observatories Initiative which is an ocean observing network providing data from more than 800 instruments. There are total 11 hydrophones in the OOI sensor network and for our purpose, we used 3 hydrophones- [Axial Base](https://interactiveoceans.washington.edu/research-sites/axial-base/), [Eastern Caldera](https://interactiveoceans.washington.edu/research-sites/axial-caldera/eastern/) and [Central Caldera](https://interactiveoceans.washington.edu/research-sites/axial-caldera/central/). More information on the hydrophones can be found in the links attached. Since the hydrophones are placed in real environment, it's natural to expect background noises from marine mammals , tides and rain among other weather conditions. The hydrophones' positions are fixed and hence, proposed method was used to extract hydrophones' recordings when an isolated ship is around.
+AIS data is used to collect ships metadata including information like geo-location, speed and vessel type, and label the hydrophones' recordings through our proposed method. . Hydrophone's recordings are collected from hydrophones of Ocean Observatories Initiative which is an ocean observing network providing data from more than 800 instruments[3]. There are total 11 hydrophones in the OOI sensor network and for our purpose, we used 3 hydrophones- [Axial Base](https://interactiveoceans.washington.edu/research-sites/axial-base/), [Eastern Caldera](https://interactiveoceans.washington.edu/research-sites/axial-caldera/eastern/) and [Central Caldera](https://interactiveoceans.washington.edu/research-sites/axial-caldera/central/). More information on the hydrophones can be found in the links attached. Since the hydrophones are placed in real environment, it's natural to expect background noises from marine mammals , tides and rain among other weather conditions. The hydrophones' positions are fixed and hence, proposed method was used to extract hydrophones' recordings when an isolated ship is around.
 
 ## PROPOSED METHOD
 
@@ -54,6 +54,7 @@ AIS data is used to collect ships metadata including information like geo-locati
 
 1. (https://mdpi.com/2078-2489/12/8/302/htm)
 2. (https://www.frontiersin.org/articles/10.3389/fnbot.2022.889308/full)
+3. (https://asa.scitation.org/doi/abs/10.1121/10.0007594)
 
 
 The aim of the project is to release a public datasets of different ships for the underwater acoustic research community and develop a ML model to classify different vessel types trained on the same dataset.
