@@ -10,19 +10,11 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
-    <li>
-      <a href="#INTRODUCTION">Introduction</a>
-      <ul>
-        <li><a href="#PROBLEM STATEMENT">Problem statement</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#DATA SOURCES">Data Sources</a>
-      <ul>
-        <li><a href="#PROPOSED METHOD">Proposed Method</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
+    <li><a href="#INTRODUCTION">Introduction</a> </li>
+    <li><a href="#PROBLEM STATEMENT">Problem statement</a></li>
+    <li><a href="#DATA SOURCES">Data Sources</a></li>
+    <li><a href="#PROPOSED METHOD">Proposed Method</a></li>
+    <li><a href="#installation">Installation</a></li>
     <li><a href="#RESULTS">Results</a></li>
     <li><a href="#FUTURE WORK">Future Work</a></li>
     <li><a href="#REFERENCES">References</a></li>
