@@ -1,7 +1,12 @@
 
 <a name="readme-top"></a>
 
-[![Ocean Data Lab][ocean-shield]][ocean-url]
+<div align="center">
+ <a href="[https://github.com/othneildrew/Best-README-Template](https://sites.uw.edu/abadi/people/)">
+    <img src="/ocean data lab.png" alt="Logo" width="200" height="50">
+  </a>
+</div>
+
 
 
 [![MIT License][license-shield]][license-url]
