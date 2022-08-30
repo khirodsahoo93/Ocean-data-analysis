@@ -8,7 +8,8 @@ On the other hand, one less explored data source is audio signals which can capt
 We are hence, creating a publicly available audio data source for ships and using it to demonstrate a vessel classification model using ML techniques.
 In the next sections, we will discuss the problem statement, data sources used and algorithms implemented to create the benchmark data and ML classification model.
 
-## Problem statement
+## PROBLEM STATEMENT
+Devised an optimised algorithm to extract the isolated ships' noises from the hydrophone data
 
 ## Data Sources
 
@@ -21,6 +22,7 @@ In the next sections, we will discuss the problem statement, data sources used a
 ## References
 
 [1] (https://mdpi.com/2078-2489/12/8/302/htm)
+[2] (https://www.frontiersin.org/articles/10.3389/fnbot.2022.889308/full)
 
 
 The aim of the project is to release a public datasets of different ships for the underwater acoustic research community and develop a ML model to classify different vessel types trained on the same dataset.
