@@ -57,7 +57,7 @@ The aim of the project is to release a public datasets of different ships for th
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [linkedin-url]: https://www.linkedin.com/in/khirodcsahoo/
 [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: 
+[license-url]:https://github.com/khirodsahoo93/Ocean-data-analysis/blob/main/license.md
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[ocean-shield]:
+[ocean-shield]:https://github.com/khirodsahoo93/Ocean-data-analysis/blob/main/ocean%20data%20lab.png
 [ocean-url]:https://sites.uw.edu/abadi/people/
