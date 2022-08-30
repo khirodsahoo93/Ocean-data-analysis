@@ -9,7 +9,7 @@ We are hence, creating a publicly available audio data source for ships and usin
 In the next sections, we will discuss the problem statement, data sources used and algorithms implemented to create the benchmark data and ML classification model.
 
 ## PROBLEM STATEMENT
-- Devise an optimised algorithm to extract the isolated ships' noises from the hydrophone's audio data and publicly available ais data containing GPS coordinates of the ships and other meta-data.
+- Devise an optimised algorithm to extract the isolated ships' noises from the hydrophone's audio data and publicly available [ais data](https://marinecadastre.gov/ais/) containing GPS coordinates of the ships and other meta-data.
 - Build a ML model to classify ships of different vessels types using Machine Learning techniques trained on the benchmark data created above.
 
 ## Data Sources
