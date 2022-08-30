@@ -36,12 +36,10 @@ Vessel's classification is the task in hand which serves many purposes like moni
 We are hence creating a publicly available audio data source for ships and using it to demonstrate a vessel classification model using ML techniques. In the next sections, we will discuss the problem statement, data sources used, and algorithms implemented to create the benchmark data and ML classification model.
 
 ## PROBLEM STATEMENT
-
 - Devise an optimised algorithm to extract the isolated ships' noises from the hydrophone's audio data and publicly available [AIS data](https://marinecadastre.gov/ais/) containing GPS coordinates of the ships and other meta-data.
 - Build a ML model to classify ships of different vessels types using Machine Learning techniques trained on the benchmark data created above.
 
 ## DATA SOURCES
-
 AIS data is used to collect ships metadata including information like geo-location, speed and vessel type, and label the hydrophones' recordings through our proposed method. . Hydrophone's recordings are collected from hydrophones of Ocean Observatories Initiative which is an ocean observing network providing data from more than 800 instruments[3]. There are total 11 hydrophones in the OOI sensor network and for our purpose, we used 3 hydrophones- [Axial Base](https://interactiveoceans.washington.edu/research-sites/axial-base/), [Eastern Caldera](https://interactiveoceans.washington.edu/research-sites/axial-caldera/eastern/) and [Central Caldera](https://interactiveoceans.washington.edu/research-sites/axial-caldera/central/). More information on the hydrophones can be found in the links attached. Since the hydrophones are placed in real environment, it's natural to expect background noises from marine mammals , tides and rain among other natural phenomena. The hydrophones' positions are fixed and hence, proposed method was used to extract hydrophones' recordings when an isolated ship is around the fixed hydrophones.
 
 ## LITERATURE SURVEY
