@@ -54,19 +54,19 @@ def get_isolated_ships(df,rad,out_rad,min_d,verbose=True): #optimised version
     # df_temp.to_csv('ships_smoothpath.csv')
     df_temp=df_temp[df_temp['rad_flag']==1]
     df_temp_grp=df_temp.groupby(by=['MMSI','break']).agg({'TIMESTAMP UTC':['min','max','count']}).reset_index()
-    df_temp_grp.columns=['MMSI','break','time_min','time_max','count']
-    df_temp_grp.drop(df_temp_grp[df_temp_grp['time_max'] == df_temp_grp['time_min']].index,inplace=True)#remove ships which barely touched the radius
+    df_temp_grp.columns=['MMSI','break','start_time','end_time','count']
+    df_temp_grp.drop(df_temp_grp[df_temp_grp['end_time'] == df_temp_grp['start_time']].index,inplace=True)#remove ships which barely touched the radius
     #df_temp_grp.drop(df_temp_grp[df_temp_grp['count']<(min_t +1)].index,inplace=True) #filter ships with less than minimum number of timestamps
     df_temp_grp=df_temp_grp.merge(vessels,how='left',on='MMSI')
     
-    df_temp_grp['len_of_recording']=(df_temp_grp['time_max']-df_temp_grp['time_min'])
+    df_temp_grp['len_of_recording']=(df_temp_grp['end_time']-df_temp_grp['start_time'])
     df_temp_grp['len_of_recording']=[x.total_seconds()/60.0 for x in df_temp_grp['len_of_recording']]
     df_temp_grp.drop(df_temp_grp[df_temp_grp['len_of_recording']<min_d].index,inplace=True)
     df_temp_grp.reset_index(inplace=True,drop=True)
     df_temp_grp.drop('break',axis=1,inplace=True)
     return df_temp_grp   
 
-#Check status of ships' lonely timeframe in the overall ais dataset
+#Check status of ships' isolated timeframe in the overall ais dataset
 def check_status_in_ais(ais,MMSI,min_time,max_time,rad):
     print('Min time : ', min_time)
     print('Max time : ', max_time)
@@ -75,13 +75,13 @@ def check_status_in_ais(ais,MMSI,min_time,max_time,rad):
     ais_test_gt=ais_test[ais_test['distance(in km)']>rad]
     n=ais_test_lt['MMSI'].nunique()
     min_distance_outside_rad=ais_test_gt['distance(in km)'].min()
-    print('The number of unique lonely ships within the radius in the timeframe : ', n)
+    print('The number of unique isolated ships within the radius in the timeframe : ', n)
     print('The minimum distance of all other ships in the timeframe is : ',min_distance_outside_rad)
     return ais_test
 
 
 
-def simp_spectrogram(hydrophone_idx,start_time,end_time,min_freq=None,max_freq=None):
+def simp_spectrogram(hydrophone_idx,start_time,end_time,fmin=None,fmax=None):
     print('Start time : {} and End time : {}'.format(start_time,end_time))
     if hydrophone_idx==1:
         node='Axial_Base'
@@ -96,7 +96,7 @@ def simp_spectrogram(hydrophone_idx,start_time,end_time,min_freq=None,max_freq=N
         end_time=start_time + timedelta(minutes=10)
     else:
         end_time=end_time
-    data_trace = ooipy.get_acoustic_data_LF(start_time, end_time, node,fmin=min_freq,fmax=max_freq, verbose=True, zero_mean=True)
+    data_trace = ooipy.get_acoustic_data_LF(start_time, end_time, node,fmin=fmin,fmax=fmax, verbose=True, zero_mean=True)
     print(data_trace)
     if data_trace==None:
         print('data trace is none. Continuing to next')
@@ -106,12 +106,37 @@ def simp_spectrogram(hydrophone_idx,start_time,end_time,min_freq=None,max_freq=N
         #spec.compute_psd_welch()
 
         print('/************************************************************************************************/')
-        ooipy.plot(spec, fmin=min_freq, fmax=max_freq, xlabel_rot=30,vmax=110) #xlabel changed from 30 to 10
+        ooipy.plot(spec, fmin=fmin, fmax=fmax, xlabel_rot=30,vmax=110) #xlabel changed from 30 to 10
         #ooipy.tools.ooiplotlib.plot_spectrogram(spec)
         #plt.xlim([0, 10])
         plt.show()
 
-def get_acoustic(hydrophone_idx,start_time,end_time,min_freq=None,max_freq=None):
+
+def get_spectrogram_data(hydrophone_idx,start_time,end_time,fmin=None,fmax=None):
+    if hydrophone_idx==1:
+        node='Axial_Base'
+    elif hydrophone_idx==2:
+        node='AXCC1'
+    elif hydrophone_idx==3:
+        node='AXEC2'
+
+    time_diff=end_time-start_time
+    time_diff=time_diff.total_seconds()/60.0 
+    if time_diff >10:
+        end_time=start_time + timedelta(minutes=10)
+    else:
+        end_time=end_time
+    data_trace = ooipy.get_acoustic_data_LF(start_time, end_time, node,fmin=fmin,fmax=fmax, verbose=True, zero_mean=True)
+    print(data_trace)
+    if data_trace==None:
+        print('data trace is none. Continuing to next')
+        pass
+    else:
+        spec = data_trace.compute_spectrogram(L = 256,avg_time=None, overlap=0.9)
+
+        return spec
+
+def get_acoustic(hydrophone_idx,start_time,end_time,fmin=None,fmax=None):
     #print('Start time : {} and End time : {}'.format(start_time,end_time))
     if hydrophone_idx==1:
         node='Axial_Base'
@@ -119,7 +144,7 @@ def get_acoustic(hydrophone_idx,start_time,end_time,min_freq=None,max_freq=None)
         node='AXCC1'
     elif hydrophone_idx==3:
         node='AXEC2'
-    data_trace = ooipy.get_acoustic_data_LF(start_time, end_time, node,fmin=min_freq,fmax=max_freq, verbose=False, zero_mean=True)
+    data_trace = ooipy.get_acoustic_data_LF(start_time, end_time, node,fmin=fmin,fmax=fmax, verbose=False, zero_mean=True)
     return data_trace
 
 
@@ -133,12 +158,12 @@ def get_spectogram(hydrophone_idx,lone_ships,num=5,ideal_dur=10): #ideal_duratio
     print('Displaying spectrogram for {} ships'.format(len(lone_ships)))
     for i in range(num):
         list_dur=lone_ships.iloc[i]
-        min_time=list_dur.time_min
+        min_time=list_dur.start_time
         min_time=datetime.datetime(min_time.year,min_time.month,min_time.day,min_time.hour,min_time.minute,0)
         #min_time=min_time.strftime('%Y-%m-%d %H:%M')
         #min_time=datetime.datetime.strptime(min_time,'%Y-%m-%d %H:%M')
         print(min_time)
-        max_time=list_dur.time_max
+        max_time=list_dur.end_time
         max_time=datetime.datetime(max_time.year,max_time.month,max_time.day,max_time.hour,max_time.minute,0)
         #max_time=max_time.strftime('%Y-%m-%d %H:%M')
         #max_time=datetime.datetime.strptime(max_time,'%Y-%m-%d %H:%M')
@@ -264,16 +289,16 @@ def get_isolated_map_plot(fn,df,rad1,inner_rad2,lat,lon,min_d):
 
     ais_test=pd.DataFrame()
 
-    print('Finding lonely ships')
+    print('Finding isolated ships')
     iso_ships=get_isolated_ships(df,rad1,inner_rad2,min_d)
-    print('Found lonely ships')
+    print('Found isolated ships')
 
-    print('Creating the dataframe with all ships and their locations in the lonely timeframes')
+    print('Creating the dataframe with all ships and their locations in the isolated timeframes')
    
     
     for i in tqdm(range(len(iso_ships))):
-        min_time=iso_ships.time_min[i]
-        max_time=iso_ships.time_max[i]
+        min_time=iso_ships.start_time[i]
+        max_time=iso_ships.end_time[i]
         ais_test=pd.concat([ais_test,df[(df['TIMESTAMP UTC']>=min_time) & (df['TIMESTAMP UTC']<=max_time)]])
     
     # df1 = df[(df['distance(in km) axial']<rad1)]
@@ -354,16 +379,16 @@ def get_single_isolated_map_plot(hydrophone_idx,fn,df,rad1,inner_rad2,lat,lon,mi
 
     
 
-    print('Finding lonely ships')
+    print('Finding isolated ships')
     iso_ships=get_isolated_ships(df,rad1,inner_rad2,min_d)
-    print('Found lonely ships')
+    print('Found isolated ships')
     
    
     
     i=randint(0,len(iso_ships))
     print('showing for MMSI: ',iso_ships.MMSI[i])
-    min_time=iso_ships.time_min[i]
-    max_time=iso_ships.time_max[i]
+    min_time=iso_ships.start_time[i]
+    max_time=iso_ships.end_time[i]
     ais_test=df[(df['TIMESTAMP UTC']>=min_time) & (df['TIMESTAMP UTC']<=max_time)]
     #check_status_in_ais(ziggly2.MMSI[i],min_time,max_time,rad1)
     simp_spectrogram(hydrophone_idx,min_time,max_time,fmin,fmax)
@@ -445,9 +470,9 @@ def get_single_isolated_map_plot(hydrophone_idx,fn,df,rad1,inner_rad2,lat,lon,mi
 def isolated_ais(ais,iso_ships,inner_rad):
     data=pd.DataFrame()
     for i in tqdm(range(len(iso_ships))):
-        min_time=iso_ships.time_min[i]
-        max_time=iso_ships.time_max[i]
+        min_time=iso_ships.start_time[i]
+        max_time=iso_ships.end_time[i]
         temp=ais[(ais['TIMESTAMP UTC']>=min_time) & (ais['TIMESTAMP UTC']<=max_time) & (ais['distance(in km)']<inner_rad)]
-        temp['lonely_ship_idx']=i
+        temp['isolated_ship_idx']=i
         data=pd.concat([data,temp])
     return data
