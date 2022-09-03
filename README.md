@@ -68,7 +68,7 @@ The idea behind this algorithm is to capture the recordings as long as the ship 
 
 However, we found that the length of the recordings of each instance( a ship with start and end time when it was isolated) can vary from seconds to hours. The instances with small length of recordings are suspicious as there could be a ship around which is not recorded in the AIS data since each of the ships send their GPS coordinates at varied timestamps. To ensure the accuracy of the recordings, we decided to put a filter on the length of the recordings. We kept the recordings with length greater than dt minutes under the assumption that if a ship is not sending coordinates within dt time interval, probably its not around.
 
-However , an ideal approach would be to check the distribution of time between two success GPS pings of a ship and find on an average what is interval between two successive pings. Lets say its dt2. So, we should use dt2 to filter out recordings in the previous step.
+However , an ideal approach would be to check the distribution of time between two successive GPS pings of a ship and find on an average what is interval between two successive pings. Lets say its dt2. So, we should use dt2 to filter out recordings in the previous step.
 
 
 
