@@ -54,7 +54,21 @@ Before finalising on this approach we tried few other approaches:
 Approach I.
 Define inner radius x and outer radius infinity.
 Find all the ships within x inner radius. Get the start time(minimum timestamp) and end time(maximum timestamp) and check if there are any ships within these two timestamps. If there are no other ships , then we consider this ship as an isolated ship. One problem with this approach is that a ship may have gone out of the inner radius between start and end time. While the ship may not be strictly within x inner radius, it is still isolated since we checked there are no other ships between the start and end time.
-However, since we are checking against the entire AIS if there are any other ships within the start and end time, it leads to fewer samples.
+However, since we are checking against the entire AIS if there are any other ships within the start and end time, it leads to fewer samples of isolated ships.
+
+Approach II. 
+Define inner radius x and outer radius y.
+This is same as approach I except that now we have a finite outer radius. This approach will yield more samples as it is more lenient. we call a ship isolated if there are no other ships within the outer radius between start and end time instead of ensuring there are no other ships in the entire AIS data between the start and end time.
+However the ship still may not be strictly within the inner radius between the start and end time. And for the timestamps when the ship went out of the inner radius, it could be anywhere and may be even close to the outer radius and closer to other ships. In those timestamps , we cannot call the ship isolated and the hydrophone will also be affected.
+
+Approach III.
+Define inner radius x and outer radius y.
+In this approach, we first selected all the ships within the outer radius and sorted the resultant dataset by timestamps in ascending order. Now, we captured the continuous timestamps from the beginning when the ship id is same and the ship is within the x inner radius. This ensures that the ship is constantly within the inner radius and since the timestamps were sorted originally, there cannot be any other ships.
+The idea behind this algorithm is to capture the recordings as long as the ship id is not changing or the ship is not going out of the inner radius. With this approach we were able to capture even more samples. A single ship may be isolated between different start and end times within the inner radius and all such instances are captured with this approach.
+
+However, we found that the length of the recordings of each instance( a ship with start and end time when it was isolated) can vary from seconds to hours. The instances with small length of recordings are suspicious as there could be a ship around which is not recorded in the AIS data since each of the ships send their GPS coordinates at varied timestamps. To ensure the 
+
+
 
 
 
