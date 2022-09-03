@@ -47,6 +47,16 @@ The two popular publicly available ships' underwater acoustic datasets-  DeepShi
 Through our proposed method, we are trying to overcome the aforementioned shortcomings. Using the proposed logic, we were able to extract more number of isolated ship instances with increased amount of quality recording durations by ensuring that there are no other ships nearby when recording starts apart from the ship in interest.
   
 ## PROPOSED METHOD
+We have to find isolated ships within certain radius. We can define isolated ships as the ships which are within x radius when no other ships are 'around'. So we 
+defined an outer radius as well and then an isolated ship can be defined as a ship which is within x radius when there are no other ships within the y outer radius.
+Before finalising on this approach we tried few other approaches:
+
+Approach I.
+Define inner radius x and outer radius infinity.
+Find all the ships within x inner radius. Get the start time(minimum timestamp) and end time(maximum timestamp) and check if there are any ships within these two timestamps. If there are no other ships , then we consider this ship as an isolated ship. One problem with this approach is that a ship may have gone out of the inner radius between start and end time. While the ship may not be strictly within x inner radius, it is still isolated since we checked there are no other ships between the start and end time.
+However, since we are checking against the entire AIS if there are any other ships within the start and end time, it leads to fewer samples.
+
+
 
 ## RESULTS
 
