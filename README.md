@@ -49,7 +49,6 @@ Through our proposed method, we are trying to overcome the aforementioned shortc
 ## PROPOSED METHOD
 We have to find isolated ships within certain radius. We can define isolated ships as the ships which are within x radius when no other ships are 'around'. So we 
 defined an outer radius as well and then an isolated ship can be defined as a ship which is within x radius when there are no other ships within the y outer radius.
-Before finalising on this approach we tried few other approaches:
 
 Approach I.
 Define inner radius x and outer radius infinity.
