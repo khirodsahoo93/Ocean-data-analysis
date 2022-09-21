@@ -477,21 +477,46 @@ def isolated_ais(ais,iso_ships,inner_rad):
         data=pd.concat([data,temp])
     return data
 
-def ais_ping_distribution(ais,show=False):
+def ais_ping_distribution(ais,n=10,hist_show=False,bar_show=False):
     ais = ais.sort_values(by=['MMSI','TIMESTAMP UTC'],ascending=True)
     ais['prev TIMESTAMP UTC'] = ais.groupby(by='MMSI')['TIMESTAMP UTC'].shift(1)
     ais_temp=ais.copy()
     ais_temp.dropna(axis=0,how='any',subset=['prev TIMESTAMP UTC'],inplace=True)
     ais_temp['ping_time']=(ais_temp['TIMESTAMP UTC'] - ais['prev TIMESTAMP UTC']).dt.total_seconds()/60
-    pings=ais_temp.groupby(by=['VESSEL TYPE', 'MMSI']).agg({'ping_time': ['mean','min','max','median']}).reset_index()
-    pings.columns=['VESSEL TYPE','MMSI','mean_ping_time','min_ping_time','max_ping_time','median_ping_time']
-    if(show==show):
-        for vessel in pings['VESSEL TYPE'].unique():
+    ships_pings=ais_temp.groupby(by=['VESSEL TYPE', 'MMSI']).agg({'ping_time': ['mean','min','max','median']}).reset_index()
+    ships_pings.columns=['VESSEL TYPE','MMSI','mean_ping_time','min_ping_time','max_ping_time','median_ping_time']
+    vessels_pings=ais_temp.groupby(by=['VESSEL TYPE']).agg({'MMSI': pd.Series.nunique,'ping_time': ['mean','min','max','median']}).reset_index()
+    vessels_pings.columns=['VESSEL TYPE','distinct count ships','mean_ping_time','min_ping_time','max_ping_time','median_ping_time']
+    vessels_pings=vessels_pings.sort_values(by='distinct count ships',ascending=False)
+
+    if(hist_show):
+        for vessel in vessels_pings['VESSEL TYPE'].unique()[:n]:
             fig,ax= plt.subplots(2,2,figsize=(10,10))
             fig.suptitle(' Distribution for {} vessel'.format(vessel), fontsize=20)
-            ax[0,0].hist(pings['mean_ping_time'][pings['VESSEL TYPE']==vessel],bins=10)
-            ax[0,1].hist(pings['min_ping_time'][pings['VESSEL TYPE']==vessel],bins=10)
-            ax[1,0].hist(pings['max_ping_time'][pings['VESSEL TYPE']==vessel],bins=10)
-            ax[1,1].hist(pings['median_ping_time'][pings['VESSEL TYPE']==vessel],bins=10)
+            ax[0,0].hist(ships_pings['mean_ping_time'][ships_pings['VESSEL TYPE']==vessel],bins=10)
+            ax[0,1].hist(ships_pings['min_ping_time'][ships_pings['VESSEL TYPE']==vessel],bins=10)
+            ax[1,0].hist(ships_pings['max_ping_time'][ships_pings['VESSEL TYPE']==vessel],bins=10)
+            ax[1,1].hist(ships_pings['median_ping_time'][ships_pings['VESSEL TYPE']==vessel],bins=10)
 
-    return pings
+    if(bar_show):
+        fig,ax= plt.subplots(2,2,figsize=(20,20))
+        fig.suptitle(' Successive ping gaps by vessel type ', fontsize=20)
+        ax[0,0].bar(vessels_pings['VESSEL TYPE'].iloc[:n],vessels_pings['mean_ping_time'].iloc[:n])
+        ax[0,0].set_title('Mean')
+        ax[0,0].set_xticklabels(vessels_pings['VESSEL TYPE'].unique()[:n],rotation = 45)
+
+        ax[0,1].bar(vessels_pings['VESSEL TYPE'].iloc[:n],vessels_pings['min_ping_time'].iloc[:n])
+        ax[0,1].set_title('Min')
+        ax[0,1].set_xticklabels(vessels_pings['VESSEL TYPE'].unique()[:n],rotation = 45)
+
+        ax[1,0].bar(vessels_pings['VESSEL TYPE'].iloc[:n],vessels_pings['max_ping_time'].iloc[:n])
+        ax[1,0].set_title('Max')
+        ax[1,0].set_xticklabels(vessels_pings['VESSEL TYPE'].unique()[:n],rotation = 45)
+
+        ax[1,1].bar(vessels_pings['VESSEL TYPE'].iloc[:n],vessels_pings['median_ping_time'].iloc[:n])
+        ax[1,1].set_title('Median')
+        ax[1,1].set_xticklabels(vessels_pings['VESSEL TYPE'].unique()[:n],rotation = 45)
+
+       
+
+    return ships_pings,vessels_pings
