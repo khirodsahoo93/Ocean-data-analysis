@@ -476,3 +476,22 @@ def isolated_ais(ais,iso_ships,inner_rad):
         temp['isolated_ship_idx']=i
         data=pd.concat([data,temp])
     return data
+
+def ais_ping_distribution(ais,show=False):
+    ais = ais.sort_values(by=['MMSI','TIMESTAMP UTC'],ascending=True)
+    ais['prev TIMESTAMP UTC'] = ais.groupby(by='MMSI')['TIMESTAMP UTC'].shift(1)
+    ais_temp=ais.copy()
+    ais_temp.dropna(axis=0,how='any',subset=['prev TIMESTAMP UTC'],inplace=True)
+    ais_temp['ping_time']=(ais_temp['TIMESTAMP UTC'] - ais['prev TIMESTAMP UTC']).dt.total_seconds()/60
+    pings=ais_temp.groupby(by=['VESSEL TYPE', 'MMSI']).agg({'ping_time': ['mean','min','max','median']}).reset_index()
+    pings.columns=['VESSEL TYPE','MMSI','mean_ping_time','min_ping_time','max_ping_time','median_ping_time']
+    if(show==show):
+        for vessel in pings['VESSEL TYPE'].unique():
+            fig,ax= plt.subplots(2,2,figsize=(10,10))
+            fig.suptitle(' Distribution for {} vessel'.format(vessel), fontsize=20)
+            ax[0,0].hist(pings['mean_ping_time'][pings['VESSEL TYPE']==vessel],bins=10)
+            ax[0,1].hist(pings['min_ping_time'][pings['VESSEL TYPE']==vessel],bins=10)
+            ax[1,0].hist(pings['max_ping_time'][pings['VESSEL TYPE']==vessel],bins=10)
+            ax[1,1].hist(pings['median_ping_time'][pings['VESSEL TYPE']==vessel],bins=10)
+
+    return pings
