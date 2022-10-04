@@ -102,7 +102,7 @@ def simp_spectrogram(hydrophone_idx,start_time,end_time,fmin=None,fmax=None):
         print('data trace is none. Continuing to next')
         pass
     else:
-        spec = data_trace.compute_spectrogram(L = 256,avg_time=None, overlap=0.9)
+        spec = data_trace.compute_spectrogram(L = 256,avg_time=10, overlap=0.9)
         #spec.compute_psd_welch()
 
         print('/************************************************************************************************/')
@@ -132,7 +132,7 @@ def get_spectrogram_data(hydrophone_idx,start_time,end_time,fmin=None,fmax=None)
         print('data trace is none. Continuing to next')
         pass
     else:
-        spec = data_trace.compute_spectrogram(L = 256,avg_time=None, overlap=0.9)
+        spec = data_trace.compute_spectrogram(L = 256,avg_time=10, overlap=0.9)
 
         return spec
 
