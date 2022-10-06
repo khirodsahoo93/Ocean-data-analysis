@@ -119,7 +119,7 @@ def get_spectrogram_data(hydrophone_idx,start_time,end_time,fmin=None,fmax=None)
         node='AXCC1'
     elif hydrophone_idx==3:
         node='AXEC2'
-
+    
     time_diff=end_time-start_time
     time_diff=time_diff.total_seconds()/60.0 
     if time_diff >10:
@@ -132,7 +132,11 @@ def get_spectrogram_data(hydrophone_idx,start_time,end_time,fmin=None,fmax=None)
         print('data trace is none. Continuing to next')
         pass
     else:
-        spec = data_trace.compute_spectrogram(L = 256,avg_time=10, overlap=0.9)
+        
+        try:
+            spec = data_trace.compute_spectrogram(L = 256,avg_time=10, overlap=0.9)
+        except TypeError:
+            pass
 
         return spec
 
