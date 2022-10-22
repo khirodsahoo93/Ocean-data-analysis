@@ -19,6 +19,7 @@ import time
 import warnings
 warnings.filterwarnings("ignore")
 def choose_df(df,flag,verbose=True):
+    
     ship_cols=['MMSI', 'SHIPNAME', 'VESSEL TYPE','SPEED (KNOTSx10)','COURSE', 'HEADING', 'TIMESTAMP UTC',
        'LENGTH', 'Year','ship_Loc','LAT','LON']
     if flag==1:
@@ -30,6 +31,19 @@ def choose_df(df,flag,verbose=True):
     elif flag==3:
         cols=ship_cols + ['distance(in km) eastern cald','eastern_caldera_Loc']
         df=df[cols].rename(columns={'distance(in km) eastern cald':'distance(in km)'})
+    if verbose==True:
+        print(' Max distance: {} and Min distance: {}'.format(df['distance(in km)'].max(),df['distance(in km)'].min()))
+    return df
+
+def choose_df_oregon(df,flag,verbose=True):
+    ship_cols=['MMSI', 'VESSEL TYPE','SPEED (KNOTSx10)','COURSE', 'HEADING', 'TIMESTAMP UTC',
+       'LENGTH','ship_Loc','LAT','LON']
+    if flag==1:
+        cols=ship_cols + ['distance(in km) oregon offshore','oregon_offshore_Loc']
+        df=df[cols].rename(columns={'distance(in km) oregon offshore':'distance(in km)'})
+    elif flag==2:
+        cols=ship_cols + ['distance(in km) oregon shelf','oregon_shelf_Loc']
+        df=df[cols].rename(columns={'distance(in km) oregon shelf':'distance(in km)'})
     if verbose==True:
         print(' Max distance: {} and Min distance: {}'.format(df['distance(in km)'].max(),df['distance(in km)'].min()))
     return df
