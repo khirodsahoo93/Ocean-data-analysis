@@ -48,6 +48,19 @@ def choose_df_oregon(df,flag,verbose=True):
         print(' Max distance: {} and Min distance: {}'.format(df['distance(in km)'].max(),df['distance(in km)'].min()))
     return df
 
+def choose_df_oregon_hydrate(df,flag,verbose=True):
+    ship_cols=['MMSI', 'VESSEL TYPE', 'TIMESTAMP UTC',
+       'LENGTH','ship_Loc','LAT','LON']
+    if flag==1:
+        cols=ship_cols + ['distance(in km) oregon','oregon_slope_Loc']
+        df=df[cols].rename(columns={'distance(in km) oregon':'distance(in km)'})
+    elif flag==2:
+        cols=ship_cols + ['distance(in km) hydrate','Southern_hydrate_Loc']
+        df=df[cols].rename(columns={'distance(in km) hydrate':'distance(in km)'})
+    if verbose==True:
+        print(' Max distance: {} and Min distance: {}'.format(df['distance(in km)'].max(),df['distance(in km)'].min()))
+    return df
+
 def get_isolated_ships(df,rad,out_rad,min_d,verbose=True): #optimised version
   
     vessels=df[['MMSI','VESSEL TYPE']].drop_duplicates(subset=['MMSI'])
