@@ -1,0 +1,76 @@
+﻿sl no,vessel,group3,isolated_axial_calderas
+0,Asphalt/Bitumen Tanker,,0
+1,Bulk Carrier,Bulk,1
+2,Buoy-Laying Vessel,,0
+3,Cable Layer,,0
+4,Cargo,Dry Cargo,1
+5,Cargo/Containership,Dry Cargo,1
+6,Cement Carrier,,0
+7,Chemical Tanker,Wet Cargo,1
+8,Container Ship,Dry Cargo,1
+9,Crew Boat,,0
+10,Crude Oil Tanker,Wet Cargo,1
+11,Deck Cargo Ship,Dry Cargo,1
+12,Dive Vessel,,0
+13,Diving Support Vessel,,0
+14,Dredger,,0
+15,Drill Ship,,0
+16,Factory Trawler,,0
+17,Fishing,,0
+18,Fishing Vessel,Fishing type,1
+19,Floating Storage/Production,Other purpose,1
+20,General Cargo,Dry Cargo,1
+21,Heavy Lift Vessel,Other purpose,1
+22,Heavy Load Carrier,Dry Cargo,1
+23,High Speed Craft,,0
+24,Hopper Dredger,,0
+25,Icebreaker,Other purpose,1
+26,Inland Supply Vessel,,0
+27,"Inland, Unknown",Other purpose,1
+28,LNG Tanker,,0
+29,LPG Tanker,Wet Cargo,1
+30,Law Enforce,,0
+31,Livestock Carrier,,0
+32,Logistics Naval Vessel,,0
+33,Lpg Tanker,Wet Cargo,1
+34,Military Ops,Military,1
+35,Naval/Naval Auxiliary Vessel,,0
+36,Offshore Supply Ship,Other purpose,1
+37,Oil Products Tanker,Wet Cargo,1
+38,Oil/Chemical Tanker,Wet Cargo,1
+39,Other,Specialised cargo,1
+40,Passenger,Recreational,1
+41,Passenger Ship,Recreational,1
+42,Passengers Ship,Recreational,1
+43,Patrol Vessel,,0
+44,Pilot Vessel,,0
+45,Pleasure Craft,,0
+46,Port Tender,,0
+47,Pusher Tug,,0
+48,Radar Vessel,,0
+49,Reefer,Dry Cargo,1
+50,Reefer/Containership,Dry Cargo,1
+51,Replenishment Vessel,,0
+52,Research/Survey Vessel,Research,1
+53,Ro-Ro Cargo,Specialised cargo,1
+54,Ro-Ro/Container Carrier,,0
+55,Ro-Ro/Passenger Ship,Recreational,1
+56,SAR,,0
+57,SAR Aircraft,,0
+58,Sailing Vessel,Recreational,1
+59,Self Discharging Bulk Carrier,Bulk,1
+60,Special Vessel,Research,1
+61,Tanker,Wet Cargo,1
+62,Tanker - Hazard B,,0
+63,Timber Carrier,,0
+64,Towing Vessel,Fishing type,1
+65,Trawler,Fishing type,1
+66,Tug,Fishing type,1
+67,Tug/Supply Vessel,Fishing type,1
+68,Unspecified,Specialised cargo,1
+69,Utility Vessel,,0
+70,Vehicles Carrier,Specialised cargo,1
+71,Wood Chips Carrier,Dry Cargo,1
+72,Yacht,Recreational,1
+73,Ro-Ro/Passenger Ship,Recreational,1
+74,Reefer/Containership,Dry Cargo,1
