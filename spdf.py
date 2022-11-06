@@ -7,6 +7,8 @@ import time
 import numpy as np
 from joblib import Parallel, delayed
 from tqdm import tqdm
+import matplotlib.pyplot as plt
+
 
 def get_spdf(spec_like, fs_hz, fmax=None, spl_bins=np.linspace(0, 120, 481),
              percentiles=[1, 5, 10, 50, 90, 95, 99]):
@@ -105,12 +107,12 @@ def plot_spdf(spdf, vmin=0.003, vmax=0.2, vdelta=0.0025, save=False, filename=No
     else:
         plt.show()
 
-def get_hdatas(i,isolated_ships_2,group_var,hdatas):
+def get_hdatas_parallel(i,isolated_ships,hdatas,group_var):
     
-    vessel_type=isolated_ships_2[group_var][i]
-    starttime = isolated_ships_2.start_time[i] 
-    endtime = isolated_ships_2.end_time[i]  
-    hydro=isolated_ships_2.hydrophone[i] 
+    vessel_type=isolated_ships[group_var][i]
+    starttime = isolated_ships.start_time[i] 
+    endtime = isolated_ships.end_time[i]  
+    hydro=isolated_ships.hydrophone[i] 
     if hydro==1:
         node='Axial_Base'
         hdata = ooipy.request.hydrophone_request.get_acoustic_data_LF(starttime, endtime,node )
@@ -128,6 +130,29 @@ def get_hdatas(i,isolated_ships_2,group_var,hdatas):
         hdatas[vessel_type].append(hdata)
     return hdatas
 
+def get_hdatas(isolated_ships,group_var):
+    hdatas = dict()
+    for i in tqdm(range(len(isolated_ships))):
+        vessel_type=isolated_ships[group_var][i]
+        starttime = isolated_ships.start_time[i] 
+        endtime = isolated_ships.end_time[i]  
+        hydro=isolated_ships.hydrophone[i] 
+        if hydro==1:
+            node='Axial_Base'
+            hdata = ooipy.request.hydrophone_request.get_acoustic_data_LF(starttime, endtime,node )
+        if hydro==2:
+            node='AXCC1'
+            hdata = ooipy.request.hydrophone_request.get_acoustic_data_LF(starttime, endtime,node )
+        if hydro==3:
+            node='AXEC2'
+            hdata = ooipy.request.hydrophone_request.get_acoustic_data_LF(starttime, endtime,node )
+
+        if vessel_type not in hdatas.keys():
+            hdatas[vessel_type]=[]
+            hdatas[vessel_type].append(hdata)     
+        else:
+            hdatas[vessel_type].append(hdata)
+    return hdatas
 
 def get_psds():
     psds = dict()
@@ -142,12 +167,12 @@ def get_psds():
             else:
                 psds[vessel_type].append(psd)
                 
-def plot_and_save_spdfs(isolated_ships_2,group_var,save=False,plot=True,title=None):
+def plot_and_save_spdfs_parallel(isolated_ships_2,group_var,save=False,plot=True,title=None):
     
     hdatas = dict()
     ## Get the hdatas
     start_exe=time.time()
-    results = Parallel(n_jobs=2)(delayed(get_hdatas)(i,isolated_ships_2,group_var,hdatas) for i in tqdm(range(len(isolated_ships_2))) )
+    results = Parallel(n_jobs=8)(delayed(get_hdatas_parallel)(i,isolated_ships_2,hdatas,group_var) for i in tqdm(range(len(isolated_ships_2))) )
     end_exe=time.time()
     print(end_exe-start_exe)
     
@@ -155,16 +180,15 @@ def plot_and_save_spdfs(isolated_ships_2,group_var,save=False,plot=True,title=No
     psds = dict()
     i=0
     for result in results:
-
-        hdata=list(result.values())[0][0]
+        hdata_=list(result.values())[0][0]
         vessel_type=list(result.keys())[0]
-        if hdata is None:
+        if hdata_ is None:
             continue
         else:
             try:
-                psd = hdata.compute_psd_welch(L=1024)
+                psd = hdata_.compute_psd_welch(L=1024)
             except:
-                print('Time duration is too short')
+                print('failed')
                 print(isolated_ships_2['start_time'].iloc[i])
                 print(isolated_ships_2['end_time'].iloc[i])
                 pass
@@ -202,3 +226,58 @@ def plot_and_save_spdfs(isolated_ships_2,group_var,save=False,plot=True,title=No
                 spdf = get_spdf(psd_dict, 200, fmax=100, spl_bins=np.linspace(0, 120, 481),percentiles=[1, 5, 10, 50, 90, 95, 99])
                 print(k)
                 plot_spdf(spdf, log=False)
+                
+    return psds_dict
+                
+                
+def plot_and_save_spdfs(isolated_ships,group_var,save=False,plot=True,title=None):
+    
+    ## Get the hdatas
+    
+    start_exe=time.time()
+    hdatas=get_hdatas(isolated_ships,group_var)
+    end_exe=time.time()
+    print(end_exe-start_exe)
+    
+    ## Calculate PSD for each time segment
+    psds = dict()
+    for vessel_type,hdatas_lst in hdatas.items():
+
+        for hdata in hdatas_lst:
+            if hdata is None:
+                continue
+            psd = hdata.compute_psd_welch(L=1024)
+            if vessel_type not in psds.keys():
+                psds[vessel_type]=[]
+                psds[vessel_type].append(psd)     
+            else:
+                psds[vessel_type].append(psd)
+            
+            
+    ## Concatenate all PSDs into single numpy array
+    # first create a list of 1D np arrays (not ooipy.PSD objects)
+    psds_dict = dict()
+    for vessel_type,psds_lst in psds.items():
+        for psd in psds_lst:
+            if vessel_type not in psds_dict.keys():
+                psds_dict[vessel_type]=[]
+                psds_dict[vessel_type].append(psd.values)
+            else:
+                psds_dict[vessel_type].append(psd.values)   
+
+    for vessel_type in psds_dict.keys():
+        psds_dict[vessel_type]=np.array(psds_dict[vessel_type])
+
+    if save:
+        np.save('json_files/{}.npy'.format(title),psds_dict)
+
+    if plot:
+        ## Calculate and Plot SPDFs
+        for k,v in psds_dict.items():
+            psd_dict = {
+            'values':v,
+            'freq':psds[k][0].freq,
+            'time':np.arange(v.shape[0])}
+            spdf = get_spdf(psd_dict, 200, fmax=100, spl_bins=np.linspace(0, 120, 481),percentiles=[1, 5, 10, 50, 90, 95, 99])
+            print(k)
+            plot_spdf(spdf, log=False)
