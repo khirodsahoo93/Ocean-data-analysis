@@ -194,6 +194,10 @@ def get_spectrogram_data(hydrophone_idx,start_time,end_time,fmin=None,fmax=None)
         node='AXCC1'
     elif hydrophone_idx==3:
         node='AXEC2'
+    elif hydrophone_idx==4:
+        node='HYSB1'
+    elif hydrophone_idx==5:
+        node='HYS14'
     
     time_diff=end_time-start_time
     time_diff=time_diff.total_seconds()/60.0 
@@ -223,6 +227,11 @@ def get_acoustic(hydrophone_idx,start_time,end_time,fmin=None,fmax=None):
         node='AXCC1'
     elif hydrophone_idx==3:
         node='AXEC2'
+    elif hydrophone_idx==4:
+        node='HYSB1'
+    elif hydrophone_idx==5:
+        node='HYS14'
+    
     data_trace = ooipy.get_acoustic_data_LF(start_time, end_time, node,fmin=fmin,fmax=fmax, verbose=False, zero_mean=True)
     return data_trace
 
