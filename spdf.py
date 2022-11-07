@@ -20,7 +20,6 @@ def get_spdf(spec_like, fs_hz, fmax=None, spl_bins=np.linspace(0, 120, 481),
     spl_bins : bins for spectral level
     percentiles : percentiles that will be computed along with the PDF
     """
-    
     if isinstance(spec_like, Spectrogram):
         time = spec_like.time
         freq = spec_like.freq
@@ -36,8 +35,6 @@ def get_spdf(spec_like, fs_hz, fmax=None, spl_bins=np.linspace(0, 120, 481),
     else:
         print('spec_like must be either ooipy.Spectrogram object or dictionary with keys "time", "freq", and "values"')
         
-    
-    
     dct_category = {'data': [], 'cnt': 0, 'starttime': [], 'endtime': [], 'windspeed': [], 'windangle': []}
     
     if fmax is None:
@@ -50,7 +47,7 @@ def get_spdf(spec_like, fs_hz, fmax=None, spl_bins=np.linspace(0, 120, 481),
                 'pdf': np.empty((n_freq_bin, 480)),
                 'mean': np.empty(n_freq_bin),
                 'number_psd': len(time)}
-    
+
     for p in percentiles:
         spdf_dct[str(p)] = np.empty(n_freq_bin)             
 

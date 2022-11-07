@@ -35,20 +35,8 @@ def choose_df(df,flag,verbose=True):
         print(' Max distance: {} and Min distance: {}'.format(df['distance(in km)'].max(),df['distance(in km)'].min()))
     return df
 
-def choose_df_oregon(df,flag,verbose=True):
-    ship_cols=['MMSI', 'VESSEL TYPE','SPEED (KNOTSx10)','COURSE', 'HEADING', 'TIMESTAMP UTC',
-       'LENGTH','ship_Loc','LAT','LON']
-    if flag==1:
-        cols=ship_cols + ['distance(in km) oregon offshore','oregon_offshore_Loc']
-        df=df[cols].rename(columns={'distance(in km) oregon offshore':'distance(in km)'})
-    elif flag==2:
-        cols=ship_cols + ['distance(in km) oregon shelf','oregon_shelf_Loc']
-        df=df[cols].rename(columns={'distance(in km) oregon shelf':'distance(in km)'})
-    if verbose==True:
-        print(' Max distance: {} and Min distance: {}'.format(df['distance(in km)'].max(),df['distance(in km)'].min()))
-    return df
 
-def choose_df_oregon_hydrate(df,flag,verbose=True):
+def choose_df_slope_hydrate(df,flag,verbose=True):
     ship_cols=['MMSI', 'VESSEL TYPE', 'TIMESTAMP UTC',
        'LENGTH','ship_Loc','LAT','LON']
     if flag==1:
@@ -61,6 +49,66 @@ def choose_df_oregon_hydrate(df,flag,verbose=True):
         print(' Max distance: {} and Min distance: {}'.format(df['distance(in km)'].max(),df['distance(in km)'].min()))
     return df
 
+def break_duration(isolated_ships):
+    ncols=isolated_ships.shape[1]
+    isolated_ships_2=pd.DataFrame()
+    row={'MMSI':'','start_time':'','end_time':'','VESSEL TYPE':''}
+    for i in range(len(isolated_ships)):
+        MMSI=isolated_ships['MMSI'].iloc[i]
+        start=isolated_ships['start_time'].iloc[i]
+        end=isolated_ships['end_time'].iloc[i]
+        VESSEL_TYPE=isolated_ships['VESSEL TYPE'].iloc[i]
+        duration=isolated_ships['len_of_recording'].iloc[i]
+        row['MMSI']=MMSI
+        row['VESSEL TYPE']=VESSEL_TYPE
+        if duration <= 10:
+            row['start_time']=start
+            row['end_time']=end
+            row['len_of_recording']=(end-start).total_seconds()/60
+            print(row)
+            isolated_ships_2=isolated_ships_2.append(row,ignore_index=True)
+        else:
+            temp_end=start+timedelta(minutes=10)
+            temp_start=start
+            while temp_end <= end:
+                row['start_time']=temp_start
+                row['end_time']=temp_end
+                row['len_of_recording']=(temp_end-temp_start).total_seconds()/60
+                isolated_ships_2=isolated_ships_2.append(row,ignore_index=True)
+
+                temp_start=temp_end
+                temp_end=temp_start+timedelta(minutes=10)
+            if temp_start < end:
+                row['start_time']=temp_start
+                row['end_time']=end
+                row['len_of_recording']=(end-temp_start).total_seconds()/60
+                isolated_ships_2=isolated_ships_2.append(row,ignore_index=True)
+    return isolated_ships_2
+def load_saved_df_axial(hydrophone_idx,inner_rad,outer_rad):
+    if hydrophone_idx==1:
+        hydro='Axial_Base'
+    elif hydrophone_idx==2:
+        hydro='Central_Caldera'
+    elif hydrophone_idx==3:
+        hydro='Eastern_Caldera'
+    suffix=str(inner_rad)+'_'+ str(outer_rad)+'.csv'
+        
+    isolated_ais=pd.read_csv(path_to_write+hydro+'/isolated_ais_'+ suffix)
+    isolated_ais_10m=pd.read_csv(path_to_write+hydro+'/isolated_ais_10m_'+ suffix)
+    
+def load_saved_df_slope_hydrate(hydrophone_idx,inner_rad,outer_rad):
+    
+    if hydrophone_idx==1:
+        hydro='Oregon_slope'
+    elif hydrophone_idx==2:
+        hydro='Southern_hydrate'
+        
+    suffix=str(inner_rad)+'_'+ str(outer_rad)+'.csv'
+        
+    isolated_ais=pd.read_csv(path_to_write+hydro+'/isolated_ais_'+ suffix)
+    isolated_ais_10m=pd.read_csv(path_to_write+hydro+'/isolated_ais_10m_'+ suffix)
+    
+    
 def get_isolated_ships(df,rad,out_rad,min_d,verbose=True): #optimised version
   
     vessels=df[['MMSI','VESSEL TYPE']].drop_duplicates(subset=['MMSI'])
