@@ -1,74 +1,74 @@
-,vessel,group3,median_length,median_speed,mean_speed,min_speed,max_speed,count,clusters,group1,group2,isolated?,length,width,tonnage,MMSI,Remarks,isolated_axial_calderas
-0,Asphalt/Bitumen Tanker,,183.06,130,123.7681159,97,139,207,2,Tankers,,0,134.54,17.23,9748,,,0
-1,Bulk Carrier,Bulk,199.9,114,106.9330494,0,887,1229533,2,Dry Cargo,,1,282,45,175775,,,1
-2,Buoy-Laying Vessel,,68.8,132,130.7426901,1,153,171,4,,,0,,,,,,0
-3,Cable Layer,,139.15,104,86.19183286,0,130,1053,0,,,0,124.32,31.6,10543,,,0
-4,Cargo,Dry Cargo,199,116,104.0290676,0,196,10596,2,Dry Cargo,,1,199.99,32,62689,,All the cargo vessels are bulk carrier in marine traffic,1
-5,Cargo/Containership,Dry Cargo,217,214,178.3090978,45,251,5309,2,Dry Cargo,,1,199.9,32.29 ,55596 ,477444500,,1
-6,Cement Carrier,,139.95,25,25,25,25,1,0,Dry Cargo,,0,,,,,,0
-7,Chemical Tanker,Wet Cargo,174.43,124,113.8003017,0,160,7291,0,Tankers,Liquid cargo,1,174.44,27.7,35332,538003929,,1
-8,Container Ship,Dry Cargo,262.18,193,181.2267406,1,957,48002,3,Dry Cargo,,1,366.52,48.35 ,13000 TEU,211578000,TEU is unit for measurement of number of containers,1
-9,Crew Boat,,36,124,123.1308411,53,132,214,1,Passenger,Liquid cargo,0,,,,,,0
-10,Crude Oil Tanker,Wet Cargo,255.9,63,68.48114498,0,913,146937,3,Tankers,,1,274.39,48.04,158466,247301100,,1
-11,Deck Cargo Ship,Dry Cargo,224.8,89,90.7125,46,112,80,2,Dry Cargo,,0,,,,,,1
-12,Dive Vessel,,12,133.5,116.0882353,75,137,34,1,Dive,,0,,,,,,0
-13,Diving Support Vessel,,74.83,64,64.23469388,42,86,98,4,Dive,,0,,,,,,0
-14,Dredger,,59,119,245.3333333,8,609,3,4,,,0,,,,,,0
-15,Drill Ship,,158,78,80.5,74,112,14,0,,,0,,,,,,0
-16,Factory Trawler,,22,104,107.8384279,32,147,229,1,Class A,,0,,,,,,0
-17,Fishing,,22,18,32.51138586,0,350,15853,1,Class A,,0,,,,,,0
-18,Fishing Vessel,Fishing type,27.24,67,62.39899805,0,129,17965,1,Class A,,1,32.49,7.55,,367347000,,1
-19,Floating Storage/Production,Other purpose,228,129,127.4907975,46,136,163,2,,,0,,,,,,1
-20,General Cargo,Dry Cargo,179.97,120,114.9680499,0,611,84851,2,Dry Cargo,,1,159.8,24.34,11937 ,218170000,,1
-21,Heavy Lift Vessel,Other purpose,234.93,98,102.4849624,3,138,1330,2,Dry Cargo,Specialised cargo,0,,,,,,1
-22,Heavy Load Carrier,Dry Cargo,169.4,134,122.2569061,15,158,1086,0,Dry Cargo,,1,169.4,25.73,10662,367782370,,1
-23,High Speed Craft,,81.15,175.5,174.625,166,183,16,4,,,0,,,,,,0
-24,Hopper Dredger,,118.47,106,105.5454545,97,122,55,0,Class A,,0,,,,,,0
-25,Icebreaker,Other purpose,121.62,138,131.7012658,56,165,395,0,,,1,121.62,25.33,7000,367255000,,1
-26,Inland Supply Vessel,,26,64,301,59,780,3,1,Inland,,0,,,,,,0
-27,"Inland, Unknown",Other purpose,0,63,59.91843972,1,127,1410,1,Inland,,1,,,,,,1
-28,LNG Tanker,,288.22,128,128,128,128,1,3,Tankers,Liquid cargo,0,,,,,,0
-29,LPG Tanker,Wet Cargo,225.23,130,110.2257293,0,177,8364,2,Tankers,Liquid cargo,1,226 ,37 ,82000 cubic meters Liquid Gas,538006045,,1
-30,Law Enforce,,140,143,142.990099,134,149,101,0,,,0,,,,,,0
-31,Livestock Carrier,,89.3,113,111.3846154,104,116,13,4,,Specialised cargo,0,,,,,,0
-32,Logistics Naval Vessel,,208.71,149,144.5450928,26,205,754,2,Navy,,0,,,,,,0
-33,Lpg Tanker,Wet Cargo,204.91,159,158.3793103,152,162,29,2,Tankers,Liquid cargo,1,,,,,,1
-34,Military Ops,Military,96,187,177.2255125,37,332,439,4,Navy,,0,,,,,,1
-35,Naval/Naval Auxiliary Vessel,,202.97,129,117.5971564,87,153,211,2,Navy,,0,,,,,,0
-36,Offshore Supply Ship,Other purpose,41.46,43,50.38429829,1,154,5337,1,,,1,41.46,10.37,428 ,338415000,,1
-37,Oil Products Tanker,Wet Cargo,228.08,22,59.04817242,0,191,29602,2,Tankers,,1,179.8 ,32.2,45728,477463900,,1
-38,Oil/Chemical Tanker,Wet Cargo,183,111,87.0937838,0,592,134970,2,Tankers,Liquid cargo,1,183.31 ,32.2 ,49828 ,369042000,,1
-39,Other,Specialised cargo,140,155,141.8848315,0,240,356,0,,,0,,,,,,1
-40,Passenger,Recreational,28,105,107.7769572,0,574,677,1,Passenger,Specialised cargo,1,38.7,10.97 ,,366339000,,1
-41,Passenger Ship,Recreational,289.52,181,181.9300165,17,235,4844,3,Passenger,Specialised cargo,1,,,,,,1
-42,Passengers Ship,Recreational,289.51,180,176.044021,16,221,1522,3,Passenger,Specialised cargo,0,,,,,,1
-43,Patrol Vessel,,82.96,100,100.6285714,19,112,140,4,,,0,,,,,,0
-44,Pilot Vessel,,11,4,4,4,4,1,1,,,0,,,,,,0
-45,Pleasure Craft,,52,125.5,121.2932331,33,592,266,4,,,0,,,,,,0
-46,Port Tender,,17,0,0,0,0,1,1,,,0,,,,,,0
-47,Pusher Tug,,209,132,121.8797468,26,137,158,2,Class A,Specialised cargo,0,,,,,,0
-48,Radar Vessel,,202.97,150,151.8098592,125,165,142,2,,,0,,,,,,0
-49,Reefer,Dry Cargo,150,154,153.1790371,16,189,1994,0,Dry Cargo,,1,140.5 ,19.7 ,11095 ,311957000,,1
-50,Reefer/Containership,,151,121,117.0024155,69,182,414,0,Dry Cargo,,0,,,,,,0
-51,Replenishment Vessel,,187.45,146,142.8569065,33,197,3627,2,,,0,,,,,,0
-52,Research/Survey Vessel,Research,71.5,9,32.10379681,0,204,38585,4,,,1,83.26,16 ,,366345000,,1
-53,Ro-Ro Cargo,Specialised cargo,199.52,141,104.4372719,0,195,4384,2,Dry Cargo,,1,117.38,17.97,6693,,,1
-54,Ro-Ro/Container Carrier,,264.6,159,160.5666667,154,226,30,3,Dry Cargo,,0,,,,,,0
-55,Ro-Ro/Passenger Ship,,38.7,97,97.18272171,2,146,1308,1,Dry Cargo,,0,,,,,,0
-56,SAR,,64,61,102.5510204,8,238,49,4,,,0,,,,,,0
-57,SAR Aircraft,,0,125,124.359375,117,127,128,1,,,0,,,,,,0
-58,Sailing Vessel,Recreational,41,63,65.90909091,7,131,550,1,,,0,,,,,,1
-59,Self Discharging Bulk Carrier,Bulk,225,125,123.186934,0,146,1546,2,Dry Cargo,,0,,,,,,1
-60,Special Vessel,Research,63.6,78,68.37583893,0,173,3278,4,,,1,79.71 ,15.85 ,1556,338417000,its research vessel in marine traffic,1
-61,Tanker,Wet Cargo,228,123,110.9832685,3,571,5917,2,Tankers,,1,243 ,42.03 ,109085 ,477144300,crude oil tanker in marinetraffic,1
-62,Tanker - Hazard B,,159,122,121.7231638,111,134,177,0,Tankers,,0,,,,,,0
-63,Timber Carrier,,189.77,120,119.7758985,84,142,473,2,Dry Cargo,,0,,,,,,0
-64,Towing Vessel,Fishing type,36.58,78,78.94394135,0,115,16233,1,,,1,36.58 ,11 ,595 ,303681000,,1
-65,Trawler,Fishing type,35,92,100.3689912,0,150,1477,1,Class A,,0,,,,,,1
-66,Tug,Fishing type,37.03,95,90.54729332,0,858,30554,1,Class A,Specialised cargo,1,73.2 ,20 ,3506 ,220589000,,1
-67,Tug/Supply Vessel,Fishing type,73.2,65,74.69860724,3,152,1795,4,Class A,Specialised cargo,1,,,,,,1
-68,Unspecified,Specialised cargo,28,110,105.979684,2,230,886,1,,,1,,,,,,1
-69,Utility Vessel,,79.71,33,49.40145985,1,112,137,4,,,0,,,,,,0
-70,Vehicles Carrier,Specialised cargo,199.94,148,139.1504797,0,933,97455,2,Dry Cargo,,1,199.94 ,32.2 ,17765 ,372148000,,1
-71,Wood Chips Carrier,Dry Cargo,199.96,123,119.3062005,4,156,25111,2,Dry Cargo,,1,199.99 ,32.2 ,49710 ,372828000,,1
-72,Yacht,Recreational,47.87,128,119.7841833,8,158,1353,1,Passenger,Specialised cargo,1,40.27,7.37 ,,538070715,,1
+vessel,group3,group4,median_length,median_speed,mean_speed,min_speed,max_speed,count,clusters,group1,group2,isolated?,length,width,tonnage,MMSI,Remarks,isolated_axial_calderas
+Asphalt/Bitumen Tanker,,,183.06,130,123.7681159,97,139,207,2,Tankers,,0,134.54,17.23,9748,,,0
+Bulk Carrier,Bulk,Cargo typeC,199.9,114,106.9330494,0,887,1229533,2,Dry Cargo,,1,282,45,175775,,,1
+Buoy-Laying Vessel,,,68.8,132,130.7426901,1,153,171,4,,,0,,,,,,0
+Cable Layer,,,139.15,104,86.19183286,0,130,1053,0,,,0,124.32,31.6,10543,,,0
+Cargo,Dry Cargo,Cargo typeB,199,116,104.0290676,0,196,10596,2,Dry Cargo,,1,199.99,32,62689,,All the cargo vessels are bulk carrier in marine traffic,1
+Cargo/Containership,Dry Cargo,Cargo typeB,217,214,178.3090978,45,251,5309,2,Dry Cargo,,1,199.9,32.29 ,55596 ,477444500,,1
+Cement Carrier,,,139.95,25,25,25,25,1,0,Dry Cargo,,0,,,,,,0
+Chemical Tanker,Wet Cargo,Cargo typeA,174.43,124,113.8003017,0,160,7291,0,Tankers,Liquid cargo,1,174.44,27.7,35332,538003929,,1
+Container Ship,Dry Cargo,Cargo TypeC,262.18,193,181.2267406,1,957,48002,3,Dry Cargo,,1,366.52,48.35 ,13000 TEU,211578000,TEU is unit for measurement of number of containers,1
+Crew Boat,,,36,124,123.1308411,53,132,214,1,Passenger,Liquid cargo,0,,,,,,0
+Crude Oil Tanker,Wet Cargo,Cargo TypeC,255.9,63,68.48114498,0,913,146937,3,Tankers,,1,274.39,48.04,158466,247301100,,1
+Deck Cargo Ship,Dry Cargo,,224.8,89,90.7125,46,112,80,2,Dry Cargo,,0,,,,,,1
+Dive Vessel,,,12,133.5,116.0882353,75,137,34,1,Dive,,0,,,,,,0
+Diving Support Vessel,,,74.83,64,64.23469388,42,86,98,4,Dive,,0,,,,,,0
+Dredger,,,59,119,245.3333333,8,609,3,4,,,0,,,,,,0
+Drill Ship,,,158,78,80.5,74,112,14,0,,,0,,,,,,0
+Factory Trawler,,,22,104,107.8384279,32,147,229,1,Class A,,0,,,,,,0
+Fishing,,,22,18,32.51138586,0,350,15853,1,Class A,,0,,,,,,0
+Fishing Vessel,Fishing type,Fishing type,27.24,67,62.39899805,0,129,17965,1,Class A,,1,32.49,7.55,,367347000,,1
+Floating Storage/Production,Other purpose,,228,129,127.4907975,46,136,163,2,,,0,,,,,,1
+General Cargo,Dry Cargo,Cargo typeB,179.97,120,114.9680499,0,611,84851,2,Dry Cargo,,1,159.8,24.34,11937 ,218170000,,1
+Heavy Lift Vessel,Other purpose,,234.93,98,102.4849624,3,138,1330,2,Dry Cargo,Specialised cargo,0,,,,,,1
+Heavy Load Carrier,Dry Cargo,Cargo typeA,169.4,134,122.2569061,15,158,1086,0,Dry Cargo,,1,169.4,25.73,10662,367782370,,1
+High Speed Craft,,,81.15,175.5,174.625,166,183,16,4,,,0,,,,,,0
+Hopper Dredger,,,118.47,106,105.5454545,97,122,55,0,Class A,,0,,,,,,0
+Icebreaker,Other purpose,,121.62,138,131.7012658,56,165,395,0,,,1,121.62,25.33,7000,367255000,,1
+Inland Supply Vessel,,,26,64,301,59,780,3,1,Inland,,0,,,,,,0
+"Inland, Unknown",Other purpose,,0,63,59.91843972,1,127,1410,1,Inland,,1,,,,,,1
+LNG Tanker,,,288.22,128,128,128,128,1,3,Tankers,Liquid cargo,0,,,,,,0
+LPG Tanker,Wet Cargo,Cargo typeC,225.23,130,110.2257293,0,177,8364,2,Tankers,Liquid cargo,1,226 ,37 ,82000 cubic meters Liquid Gas,538006045,,1
+Law Enforce,,,140,143,142.990099,134,149,101,0,,,0,,,,,,0
+Livestock Carrier,,,89.3,113,111.3846154,104,116,13,4,,Specialised cargo,0,,,,,,0
+Logistics Naval Vessel,,,208.71,149,144.5450928,26,205,754,2,Navy,,0,,,,,,0
+Lpg Tanker,Wet Cargo,Cargo typeC,204.91,159,158.3793103,152,162,29,2,Tankers,Liquid cargo,1,,,,,,1
+Military Ops,Military,,96,187,177.2255125,37,332,439,4,Navy,,0,,,,,,1
+Naval/Naval Auxiliary Vessel,,,202.97,129,117.5971564,87,153,211,2,Navy,,0,,,,,,0
+Offshore Supply Ship,Other purpose,,41.46,43,50.38429829,1,154,5337,1,,,1,41.46,10.37,428 ,338415000,,1
+Oil Products Tanker,Wet Cargo,Cargo typeB,228.08,22,59.04817242,0,191,29602,2,Tankers,,1,179.8 ,32.2,45728,477463900,,1
+Oil/Chemical Tanker,Wet Cargo,Cargo typeB,183,111,87.0937838,0,592,134970,2,Tankers,Liquid cargo,1,183.31 ,32.2 ,49828 ,369042000,,1
+Other,Specialised cargo,,140,155,141.8848315,0,240,356,0,,,0,,,,,,1
+Passenger,Recreational,Recreational,28,105,107.7769572,0,574,677,1,Passenger,Specialised cargo,1,38.7,10.97 ,,366339000,,1
+Passenger Ship,Recreational,Recreational,289.52,181,181.9300165,17,235,4844,3,Passenger,Specialised cargo,1,,,,,,1
+Passengers Ship,Recreational,,289.51,180,176.044021,16,221,1522,3,Passenger,Specialised cargo,0,,,,,,1
+Patrol Vessel,,,82.96,100,100.6285714,19,112,140,4,,,0,,,,,,0
+Pilot Vessel,,,11,4,4,4,4,1,1,,,0,,,,,,0
+Pleasure Craft,,,52,125.5,121.2932331,33,592,266,4,,,0,,,,,,0
+Port Tender,,,17,0,0,0,0,1,1,,,0,,,,,,0
+Pusher Tug,,,209,132,121.8797468,26,137,158,2,Class A,Specialised cargo,0,,,,,,0
+Radar Vessel,,,202.97,150,151.8098592,125,165,142,2,,,0,,,,,,0
+Reefer,Dry Cargo,Cargo typeA,150,154,153.1790371,16,189,1994,0,Dry Cargo,,1,140.5 ,19.7 ,11095 ,311957000,,1
+Reefer/Containership,,,151,121,117.0024155,69,182,414,0,Dry Cargo,,0,,,,,,0
+Replenishment Vessel,,,187.45,146,142.8569065,33,197,3627,2,,,0,,,,,,0
+Research/Survey Vessel,Research,Research,71.5,9,32.10379681,0,204,38585,4,,,1,83.26,16 ,,366345000,,1
+Ro-Ro Cargo,Specialised cargo,Cargo typeB,199.52,141,104.4372719,0,195,4384,2,Dry Cargo,,1,117.38,17.97,6693,,,1
+Ro-Ro/Container Carrier,,,264.6,159,160.5666667,154,226,30,3,Dry Cargo,,0,,,,,,0
+Ro-Ro/Passenger Ship,,,38.7,97,97.18272171,2,146,1308,1,Dry Cargo,,0,,,,,,0
+SAR,,,64,61,102.5510204,8,238,49,4,,,0,,,,,,0
+SAR Aircraft,,,0,125,124.359375,117,127,128,1,,,0,,,,,,0
+Sailing Vessel,Recreational,,41,63,65.90909091,7,131,550,1,,,0,,,,,,1
+Self Discharging Bulk Carrier,Bulk,,225,125,123.186934,0,146,1546,2,Dry Cargo,,0,,,,,,1
+Special Vessel,Research,Research,63.6,78,68.37583893,0,173,3278,4,,,1,79.71 ,15.85 ,1556,338417000,its research vessel in marine traffic,1
+Tanker,Wet Cargo,Cargo typeC,228,123,110.9832685,3,571,5917,2,Tankers,,1,243 ,42.03 ,109085 ,477144300,crude oil tanker in marinetraffic,1
+Tanker - Hazard B,,,159,122,121.7231638,111,134,177,0,Tankers,,0,,,,,,0
+Timber Carrier,,,189.77,120,119.7758985,84,142,473,2,Dry Cargo,,0,,,,,,0
+Towing Vessel,Fishing type,Fishing type,36.58,78,78.94394135,0,115,16233,1,,,1,36.58 ,11 ,595 ,303681000,,1
+Trawler,Fishing type,,35,92,100.3689912,0,150,1477,1,Class A,,0,,,,,,1
+Tug,Fishing type,Fishing type,37.03,95,90.54729332,0,858,30554,1,Class A,Specialised cargo,1,73.2 ,20 ,3506 ,220589000,,1
+Tug/Supply Vessel,Fishing type,Fishing type,73.2,65,74.69860724,3,152,1795,4,Class A,Specialised cargo,1,,,,,,1
+Unspecified,Specialised cargo,,28,110,105.979684,2,230,886,1,,,1,,,,,,1
+Utility Vessel,,,79.71,33,49.40145985,1,112,137,4,,,0,,,,,,0
+Vehicles Carrier,Specialised cargo,Cargo typeB,199.94,148,139.1504797,0,933,97455,2,Dry Cargo,,1,199.94 ,32.2 ,17765 ,372148000,,1
+Wood Chips Carrier,Dry Cargo,Cargo typeB,199.96,123,119.3062005,4,156,25111,2,Dry Cargo,,1,199.99 ,32.2 ,49710 ,372828000,,1
+Yacht,Recreational,Recreational,47.87,128,119.7841833,8,158,1353,1,Passenger,Specialised cargo,1,40.27,7.37 ,,538070715,,1
