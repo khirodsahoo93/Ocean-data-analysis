@@ -164,7 +164,7 @@ def get_psds():
             else:
                 psds[vessel_type].append(psd)
                 
-def plot_and_save_spdfs_parallel(isolated_ships_2,group_var,save=False,plot=True,title=None):
+def plot_and_save_spdfs_parallel(isolated_ships_2,group_var,save_psd=False,plot=True,filename=None,plot_path='SPDF_plots/'):
     
     hdatas = dict()
     ## Get the hdatas
@@ -198,36 +198,37 @@ def plot_and_save_spdfs_parallel(isolated_ships_2,group_var,save=False,plot=True
         
         ## Concatenate all PSDs into single numpy array
         # first create a list of 1D np arrays (not ooipy.PSD objects)
-        psds_dict = dict()
-        for vessel_type,psds_lst in psds.items():
-            for psd in psds_lst:
-                if vessel_type not in psds_dict.keys():
-                    psds_dict[vessel_type]=[]
-                    psds_dict[vessel_type].append(psd.values)
-                else:
-                    psds_dict[vessel_type].append(psd.values)   
+    psds_dict = dict()
+    for vessel_type,psds_lst in psds.items():
+        for psd in psds_lst:
+            if vessel_type not in psds_dict.keys():
+                psds_dict[vessel_type]=[]
+                psds_dict[vessel_type].append(psd.values)
+            else:
+                psds_dict[vessel_type].append(psd.values)   
 
-        for vessel_type in psds_dict.keys():
-            psds_dict[vessel_type]=np.array(psds_dict[vessel_type])
-            
-        if save:
-            np.save('json_files/{}.npy'.format(title),psds_dict)
-        
-        if plot:
-            ## Calculate and Plot SPDFs
-            for k,v in psds_dict.items():
-                psd_dict = {
-                'values':v,
-                'freq':psds[k][0].freq,
-                'time':np.arange(v.shape[0])}
-                spdf = get_spdf(psd_dict, 200, fmax=100, spl_bins=np.linspace(0, 120, 481),percentiles=[1, 5, 10, 50, 90, 95, 99])
-                print(k)
-                plot_spdf(spdf, log=False)
+    for vessel_type in psds_dict.keys():
+        psds_dict[vessel_type]=np.array(psds_dict[vessel_type])
+
+    if save_psd:
+        np.save('json_files/{}.npy'.format(filename),psds_dict)
+
+    if plot:
+        ## Calculate and Plot SPDFs
+        for k,v in psds_dict.items():
+            filepath=plot_path+k+'.png'
+            psd_dict = {
+            'values':v,
+            'freq':psds[k][0].freq,
+            'time':np.arange(v.shape[0])}
+            spdf = get_spdf(psd_dict, 200, fmax=100, spl_bins=np.linspace(0, 120, 481),percentiles=[1, 5, 10, 50, 90, 95, 99])
+            print(k)
+            plot_spdf(spdf,save=True,filename=filepath, log=False)
                 
     return psds_dict
                 
                 
-def plot_and_save_spdfs(isolated_ships,group_var,save=False,plot=True,title=None):
+def plot_and_save_spdfs(isolated_ships,group_var,save_psd=False,plot=True,filename=None):
     
     ## Get the hdatas
     
@@ -265,8 +266,8 @@ def plot_and_save_spdfs(isolated_ships,group_var,save=False,plot=True,title=None
     for vessel_type in psds_dict.keys():
         psds_dict[vessel_type]=np.array(psds_dict[vessel_type])
 
-    if save:
-        np.save('json_files/{}.npy'.format(title),psds_dict)
+    if save_psd:
+        np.save('json_files/{}.npy'.format(filename),psds_dict)
 
     if plot:
         ## Calculate and Plot SPDFs

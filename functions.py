@@ -39,10 +39,10 @@ def choose_df(df,flag,verbose=True):
 def choose_df_slope_hydrate(df,flag,verbose=True):
     ship_cols=['MMSI', 'VESSEL TYPE', 'TIMESTAMP UTC',
        'LENGTH','ship_Loc','LAT','LON']
-    if flag==1:
+    if flag==4:
         cols=ship_cols + ['distance(in km) oregon','oregon_slope_Loc']
         df=df[cols].rename(columns={'distance(in km) oregon':'distance(in km)'})
-    elif flag==2:
+    elif flag==5:
         cols=ship_cols + ['distance(in km) hydrate','Southern_hydrate_Loc']
         df=df[cols].rename(columns={'distance(in km) hydrate':'distance(in km)'})
     if verbose==True:
